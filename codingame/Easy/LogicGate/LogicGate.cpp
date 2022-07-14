@@ -47,40 +47,9 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <sstream>
 #include <map>
-#include <bitset>
 
 using namespace std;
-
-//bool* toBoolArray(string signal) {
-//
-//    bool result[signal.length()];
-//    for (int i = 0; i < signal.length(); i++) {
-//        if (signal[i] == '_') { //0
-//            temp += "0";
-//        }
-//        else { // '-' //1
-//            temp += "1";
-//        }
-//    }
-//
-//    return result;
-//}
-//
-//string toSignal(int value) {
-//    string result = bitset<64>(value).to_string();
-//    for (int i = 0; i < result.length(); i++) {
-//        if (result[i] == '0') {
-//            result[i] = '_';
-//        }
-//        else {
-//            result[i] = '-';
-//        }
-//    }
-//
-//    return result;
-//}
 
 bool toBool(char value) {
     if (value == '_') {
