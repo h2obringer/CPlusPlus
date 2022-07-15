@@ -1,0 +1,6 @@
+-- Airplane --
+Created at: HOUR 23 MIN 48 Is AF_ONE 0
+ Wait Time 12
+Fuel Left: 41 min
+Passengers: 72 people
+Not Landed Yet

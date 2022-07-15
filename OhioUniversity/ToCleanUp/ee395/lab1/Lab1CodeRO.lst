@@ -1,0 +1,129 @@
+MPASM  5.41                    LAB1CODERO.ASM   1-26-2012  16:00:47         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001         list p=16f877
+                      00002         
+                      00003 
+  00000006            00004 PORTB   equ     0x06    ; in BANK 0
+  00000006            00005 TRISB   equ     0x06    ; in BANK 1
+  00000008            00006 PORTD   equ     0x08    ; in BANK 0
+  00000008            00007 TRISD   equ     0x08    ; in BANK 1
+  00000020            00008 SEL     equ     0x20    ; in BANK 0
+  00000021            00009 TOGGLE  equ     0x21    ; in BANK 0
+  00000003            00010 STATUS  equ     0x03    ; in all BANKS
+  00000004            00011 FSR equ 0x04 ;use to store address we are refering to for indirect adressing
+  00000000            00012 INDF equ 0x00   ;indirect addressing
+                      00013 
+  00000000            00014 W       equ     d'0'    ; destination=W  ('working' register)
+  00000001            00015 F       equ     d'1'    ; destination=f
+  00000006            00016 RP1     equ     d'6'    ; bank select high bit in status reg.
+  00000005            00017 RP0     equ     d'5'    ; bank select low bit in status reg.
+  00000002            00018 Z       equ 0x02
+                      00019 
+0000                  00020         org     0x000   ; program starts at Program Memory location 0x0000
+0000   0000           00021         nop             ; nop required by older MPLAB ICD system
+                      00022 
+0001   1383           00023                 bcf STATUS,7 ;select bank 0 and 1
+0002   3020           00024                 movlw 0x20 ;set the first address
+0003   0084           00025                 movwf FSR ;   of the set to write to
+0004   30A1           00026 NXT0:   movlw 0xA1 ; value to write to registers is 0xA1
+0005   0080           00027                 movwf INDF
+0006   0A84           00028                 incf FSR,1 ;change to the next location
+0007   0804           00029                 movf FSR,0 ;move value of address to working register
+0008   3C70           00030                 sublw 0x70 ;compare address to 0x70
+0009   1D03           00031                 btfss STATUS,Z ; if address is 0x70 then procedd to 1.
+000A   2804           00032                 goto NXT0
+000B   280C           00033                 goto BANK1
+                      00034                 
+000C   30A0           00035 BANK1:  movlw 0xA0 ;rest of code follows the exact same format.
+000D   0084           00036                 movwf FSR 
+000E   30A1           00037 NXT1:   movlw 0xA1
+000F   0080           00038                 movwf INDF
+0010   0A84           00039                 incf FSR,1
+0011   0804           00040                 movf FSR,0
+0012   3CF0           00041                 sublw 0xF0
+0013   1D03           00042                 btfss STATUS,Z
+0014   280E           00043                 goto NXT1
+0015   2816           00044                 goto BANK2
+                      00045                 
+0016   1783           00046 BANK2:  bsf STATUS,7 ;select banks 2 and 3 to work with
+Warning[202]: Argument out of range.  Least significant bits used.
+0017   3010           00047                 movlw 0x110
+0018   0084           00048                 movwf FSR
+0019   30A1           00049 NXT2:   movlw 0xA1
+001A   0080           00050                 movwf INDF
+001B   0A84           00051                 incf FSR,1
+001C   0804           00052                 movf FSR,0
+MPASM  5.41                    LAB1CODERO.ASM   1-26-2012  16:00:47         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[202]: Argument out of range.  Least significant bits used.
+001D   3C70           00053                 sublw 0x170
+001E   1D03           00054                 btfss STATUS,Z
+001F   2819           00055                 goto NXT2
+0020   2821           00056                 goto BANK3
+                      00057                 
+Warning[202]: Argument out of range.  Least significant bits used.
+0021   3090           00058 BANK3:  movlw 0x190
+0022   0084           00059                 movwf FSR
+0023   30A1           00060 NXT3:   movlw 0xA1
+0024   0080           00061                 movwf INDF
+0025   0A84           00062                 incf FSR,1
+0026   0804           00063                 movf FSR,0
+Warning[202]: Argument out of range.  Least significant bits used.
+0027   3CE5           00064                 sublw 0x1E5
+0028   1D03           00065                 btfss STATUS,Z
+0029   2823           00066                 goto NXT3
+                      00067                 end
+MPASM  5.41                    LAB1CODERO.ASM   1-26-2012  16:00:47         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BANK1                             0000000C
+BANK2                             00000016
+BANK3                             00000021
+F                                 00000001
+FSR                               00000004
+INDF                              00000000
+NXT0                              00000004
+NXT1                              0000000E
+NXT2                              00000019
+NXT3                              00000023
+PORTB                             00000006
+PORTD                             00000008
+RP0                               00000005
+RP1                               00000006
+SEL                               00000020
+STATUS                            00000003
+TOGGLE                            00000021
+TRISB                             00000006
+TRISD                             00000008
+W                                 00000000
+Z                                 00000002
+__16F877                          00000001
+__DEBUG                           1
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXX------ ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    42
+Program Memory Words Free:  8150
+
+
+Errors   :     0
+Warnings :     4 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

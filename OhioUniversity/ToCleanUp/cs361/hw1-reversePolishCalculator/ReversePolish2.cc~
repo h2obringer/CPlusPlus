@@ -1,0 +1,195 @@
+//******************************************************************
+//  Author: Randy Obringer
+//  Email: ro120908@ohio.edu
+//
+//  Program: ReversePolish.cc
+//
+//  Description: This is the class implementation and usage of a 
+//    reverse polish calculator.
+//
+//  Assumptions: The string used is always in reverse polish notation
+//    and the only possible operators are +,-,*,/
+//
+//  Last updated: 3/29/11
+//
+//******************************************************************
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stack>
+using namespace std;
+
+class ReversePolish{
+  public:
+
+//***********************************************************************
+//  Function: compute (public)
+//
+//  Parameters: a constant string given in reverse polish notation format
+//    (passed by reference)
+//
+//  Effects: makes a stream out of the passed in string, then uses the 
+//    stream to fill a stack. It then uses the stack and computeAndPushBack
+//    to arrive at an answer which is returned by the function
+//
+//***********************************************************************
+
+    int compute(const string &rpstring){
+      istringstream in(rpstring);
+      int a;
+      string op;
+      stack<int> integers;
+
+      while(!in.eof()){
+        if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()!='+')||(in.peek()!='-')||(in.peek()!='*')||(in.peek()!='/')){
+          in >> a;
+          integers.push(a);
+        }if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()=='+')||(in.peek()=='-')||(in.peek()=='*')||(in.peek()=='/')){
+          in >> op;
+          computeAndPushBack(op,integers);
+        }if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()=='+')||(in.peek()=='-')||(in.peek()=='*')||(in.peek()=='/')){
+          in >> op;
+          computeAndPushBack(op,integers);
+        }if(in.peek()==' '){
+          in.ignore();
+        }
+      }; //end while loop
+      return integers.top();
+    };
+
+//************************************************************************
+//  Function: infix (public)
+//
+//  Parameters: a constant string given in reverse polish notation format
+//
+//  Effects: makes a stream out of the passed in string, then uses the 
+//    stream to fill a stack. It then uses the stack and concatenate to 
+//    arrive at a new string that is the original reverse polish string
+//    turned into a normal mathematical expression. This is the string
+//    that is returned.
+//
+//*************************************************************************
+
+    string infix(const string &rpstring){
+      istringstream in(rpstring);
+      stack<string> terms;
+      string next;
+      while(!in.eof()){
+        if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()!='+')||(in.peek()!='-')||(in.peek()!='*')||(in.peek()!='/')){
+          in >> next;
+          terms.push(next);
+        }if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()=='+')||(in.peek()=='-')||(in.peek()=='*')||(in.peek()=='/')){
+          in >> next;
+          concatenate(next,terms);
+        }if(in.peek()==' '){
+          in.ignore();
+        }if((in.peek()=='+')||(in.peek()=='-')||(in.peek()=='*')||(in.peek()=='/')){
+          in >> next;  
+          concatenate(next,terms);
+        }if(in.peek()==' '){
+          in.ignore();
+        }
+      }; //end while loop
+      return terms.top();
+    };
+
+  private:
+    //helping functions
+
+//******************************************************************
+//  Function: computeAndPushBack (private to the class)
+//
+//  Parameters:
+//    1: a string which will be "+","-","/", or "*" (passed by reference)
+//    2: a stack of integers (passed by reference)
+//
+//  Effects: Changes the stack to have the top element hold the computation
+//    of the operator (the passed in string), with the already existing 
+//    top two elements of the stack
+// 
+//  This function is used by the compute function
+//******************************************************************
+
+    void computeAndPushBack(const string &c,stack<int> &s){
+      int temp1,temp2,result;
+      if(c=="+"){
+        temp1=s.top();
+        s.pop();
+        temp2=s.top();
+        s.pop();
+        result=temp2+temp1;
+        s.push(result);
+      }else if(c=="-"){
+        temp1=s.top();
+        s.pop();
+        temp2=s.top();
+        s.pop();
+        result=temp2-temp1;
+        s.push(result);
+      }else if(c=="*"){
+        temp1=s.top();
+        s.pop();
+        temp2=s.top();
+        s.pop();
+        result=temp2*temp1;
+        s.push(result);
+      }else if(c=="/"){
+        temp1=s.top();
+        s.pop();
+        temp2=s.top();
+        s.pop();
+        result=temp2/temp1;
+        s.push(result);
+      }
+    };
+    
+//******************************************************************
+//  Function: concatenate (private to the class)
+//  
+//  Parameters: 
+//    1: a string which will be "+","-","/", or "*" (passed by reference)
+//    2: a stack of strings (passed by reference)
+//
+//  Effects: Changes the stack to hold the concatenation of the top 2
+//    strings with the operator (the string parameter)
+//
+//  This function is used by the infix function
+//******************************************************************
+
+    void concatenate(const string &c,stack<string> & s){
+      string temp1,temp2,result;
+      temp1=s.top();
+      s.pop();
+      temp2=s.top();
+      s.pop();
+      result="("+temp2+c+temp1+")";
+      s.push(result);
+    };
+};
+
+//This is the main function and will both compute and give the infix of 
+//  two reverse polish notation strings. This is the exact same as the
+//  template that is given on the homework assignment. 
+
+int main(){
+  string rp1 = "3 4 +";
+  string rp2 = "3 7 + 7 8 * +";
+
+  ReversePolish obj;
+
+  cout << obj.compute(rp1) << endl;
+  cout << obj.infix(rp1) << endl;
+  cout << obj.compute(rp2) << endl;
+  //cout << obj.infix(rp2) << endl;
+}

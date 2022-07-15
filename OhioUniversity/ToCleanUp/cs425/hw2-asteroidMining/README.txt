@@ -1,0 +1,18 @@
+Homework Assingment #2
+Randal Obringer
+
+This project gave me a good grasp on textures,picking/selection, and transformations. I will break up this explanation of my 
+program into: how I implemented my objects, how I implemented the picking/selection process, and how I implemented the game specifics.
+
+Objects:
+I implemented and stored all my objects into one array. By doing this I keep my code compact and try to leave out as much bare constants as possible in my program. The array is mapped out as to which indices of the array contain which points to which objects. 
+
+I store global variables to every different object I have in mind for the game. This allows me to control all individual characteristics of each object independent of the other objects. Each object will get its own scheme of movement and starting position. It will have its own rotation as well. The rotations are all set to the same speed but the objects have possibilities of being at different rotations when they leave and then come back to the screen. 
+
+Picking/Selection:
+I implement this portion of my program in coorespondence to the example given in class in the selection-mode.cc file. I learned a lot from this file alone and got further information on how this process works from the text in this class. I learned that GL_SELECT allows the program to retrieve the identity of the object that was picked. I learned that the GL_RENDER allows us to just render that object to the screen. More in depth information is given in the comments in the program and time restraints forbid my further discussion. 
+
+Game: 
+I wanted the game to look as realistic as possible so I wanted to involve the use of textures in my program. This makes the game visually appealing and fun to play. I also wanted to create chaos with the asteroids. Instead of having just 3 asteroids I wanted more. All 5 asteroids look different and one has a very different behavior from the others. All it took was playing around with the order of the transformations done to the asteroid. Also the game gets harder as you progress with your score by adding additional asteroids when a certain level has been reached. I provide the most primitive things that make the game as user friendly as possible. You are allowed the pause and unpause the game as well as display the help screen as much as needed by use of the keyboard. If you lose the ship explodes adding to the realisticness of the game.
+
+By all these implementations I effectively demonstrate how to pick/destinguish between objects as well as show a base knowledge of transformation. Use of the glTranslatef,glRotatef, and glScalef functions demonstrate this perfectly. These transformations allow me to use one data set to create multiple different objects for different purposes.

@@ -1,0 +1,45 @@
+Documentation for the MYSSH program.
+Author: Randal Mark Obringer
+
+The security measures in place is the authentication process and the encryption and decryption of data used between my programs. 
+The authentication process works by typing in a password at startup for the server. This typed in password will be the set password
+that all client programs must enter correctly for it to work. Only the person that entered the password into the server will therefor know this password.
+If a password is typed wrongly by the client they will be prompted 
+to re-enter the password. Upon receipt of a good password the client will send a confirmation "YES" that the password was good so that the 
+client may exit its password loop. Upon recepit of a bad password it will send a "NO" confirmation.
+The server encrypts this confirmation message so that nobody can randomly send the client a "YES".
+In the case that somebody did send the client a "YES" and it exits its loop so it could start sending commands, the server would see
+the command as a password to authenticate anyways so it would never leave that loop until the correct password is sent to it. 
+
+As far as sending the command data to the client, the server encrypts the data before sending it.
+The client will encrypt it. Only these two programs have access to the encryption and decryptions algorithms so it would be difficult for somebody
+to get ahold of them. 
+
+The encryption process in seen in the file 'encrypt.c'. The process involves running through the string of characters to be sent multiple times.
+Each time a different modification is done to it. Each run through mods the position by a different value and if it is completely divisible by that
+value then it will modify the character position by either adding or subtracting to that value. If it is not divisible by the value it modifies it by 
+either adding or subtracting a different value. The algorithm also keeps track of whether or not the new value has become an important string character
+such as the return carriage or new line characters. In the instance this happens it undoes itself at that runthrough instance and logs where it happened.
+Because the log integers are stored statically in a global file, these values are shared amongst the programs running them and are therefore used to decrypt
+the same message from the other program so that it doesn't decrypt something that was "undone".
+
+The security involved in myssh is sufficient enough to keep random people from using the server.
+Authentication is put in place right at start up so you must know the password to receipt a "YES" confirmation.
+Even a fake "YES" confirmation is not sufficient to be able to get through the security in place. Even if someone
+knew that the clear text confirmation was YES if it were sent in clear text they would have to know what the encrypted form
+of that confirmation message was because the client expects to decode this message into a "YES". The same goes for the password
+for all the above situations.
+
+Now that the programs know they are talking to eachother, the encryption involved with sending over the messages is sufficient to hide
+any important details from anybody listening in. I believe the above talk explains how the server and the client find eeach other as well.
+
+On top of my measures the whole entire process is built ontop of tcp which keeps track of sequence numbers of messages. This is another form
+of added reliability and security.
+
+Usage of my program is been by typing ./myssh -h or ./mysshd -h for the client and server programs respectively. 
+
+LAST OF ALL: my known bugs :(
+My programs somehow add an unwanted character somewhere along the lines of sending of the lines from the executed command. 
+Each time I run through my program with the "ls" commands I get a different list of files back from the server. I know the command gets to the
+server in tact and ok though because it is executed correctly on the server side. (As seen by specifying my debug option). Other than that there is nothing else
+wrong that I have noticed.

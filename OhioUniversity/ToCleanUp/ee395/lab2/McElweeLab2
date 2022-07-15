@@ -1,0 +1,40 @@
+list p = 16f877
+
+PORTB	equ	0x06	;in BANK0
+TRISB	equ 0x06	;in BANK1
+PORTD	equ 0x08	;in BANK0
+TRISD	equ 0x08	;in BANK1
+STATUS	equ 0x03	;in all banks
+RP1	equ d'6'
+RP0	equ d'5'	
+J	equ 0x30 	;storage value for inner counter value
+K	equ 0x31	;storage for middle
+L	equ 0x32	;storage for outer
+
+W		equ d'0'	;W=0 for destinations
+F		equ d'1'	;F=1 for destinations
+
+		org 0x000	;program starts at Prog Mem loc. 0x00
+		nop		;required by older MPLAB ICD system
+		
+		bsf STATUS, RP0 	;move to BANK1 to access TRISB and D
+		movlw b'00000000'
+		movwf TRISD 		;set all pins of PORTD as outputs
+		movlw b'11100001'
+		movwf TRISB 		;set bits 1-4 of TRISB to outputs
+			     		;and all other bits to inputs
+		;computed goto
+		
+DELAY:		movlw	d'5'
+		movwf	L
+mid_agn:	movlw	d'130'
+		movwf  K
+in_agn:	movlw  d'255'
+		movwf  J
+in_nxt:	decfsz J,F
+		goto in_nxt
+		decfsz K,F
+		goto in_agn
+		decfsz L,F
+		goto mid_agn
+		

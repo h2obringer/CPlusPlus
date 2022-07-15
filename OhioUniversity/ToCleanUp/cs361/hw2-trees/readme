@@ -1,0 +1,7 @@
+to compile:
+
+>>g++ main.cc
+
+Tests folder contains what should be output from the function when you give it a tree in flat file format
+
+Copy and paste flat file format tree into the program to get results. (Located in tests folder)

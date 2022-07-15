@@ -1,0 +1,44 @@
+MPLINK 4.39, Linker
+Linker Map File - Created Thu Feb 16 17:05:03 2012
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x00005a
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00002c      
+            45 out of 8454 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                COMP_GOTO   0x000015    program     static I:\lab2\McElweeLab2.asm  
+                    DELAY   0x000020    program     static I:\lab2\McElweeLab2.asm  
+                  DISPLAY   0x00000b    program     static I:\lab2\McElweeLab2.asm  
+                     INIT   0x000008    program     static I:\lab2\McElweeLab2.asm  
+                   in_agn   0x000024    program     static I:\lab2\McElweeLab2.asm  
+                   in_nxt   0x000026    program     static I:\lab2\McElweeLab2.asm  
+                  mid_agn   0x000022    program     static I:\lab2\McElweeLab2.asm  
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     INIT   0x000008    program     static I:\lab2\McElweeLab2.asm  
+                  DISPLAY   0x00000b    program     static I:\lab2\McElweeLab2.asm  
+                COMP_GOTO   0x000015    program     static I:\lab2\McElweeLab2.asm  
+                    DELAY   0x000020    program     static I:\lab2\McElweeLab2.asm  
+                  mid_agn   0x000022    program     static I:\lab2\McElweeLab2.asm  
+                   in_agn   0x000024    program     static I:\lab2\McElweeLab2.asm  
+                   in_nxt   0x000026    program     static I:\lab2\McElweeLab2.asm  
+
+

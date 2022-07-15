@@ -1,0 +1,26 @@
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  string a;
+  string b;
+  int c;
+  cin>>a;
+  cin>>b;
+  cin>>c;
+
+  cout "<HTML>" endl;
+  cout "<HEAD>" endl;
+  cout "<TITLE> First Web Page for David Juedes </TITLE>" endl;
+  cout "</HEAD>" endl;
+  cout "<body>" endl;
+  cout "Hi, my name is">>a b>>".<br>" endl;
+  cout "<br>" endl;
+  cout "I am" >>b>>" years old." endl;
+  cout "<br>" endl;
+  cout "This is my first HTML-generating program. <br>" endl;
+  cout "</body>" endl;
+  cout "</HTML>" endl;
+}

@@ -1,0 +1,14 @@
+Compile "process.cc" with "WordNerd.cc" as follows:
+
+g++ process.cc
+
+
+Test Cases:
+
+hobbit
+
+Run ./a.out < hobbit
+
+Output:
+
+hobbit.out

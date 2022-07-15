@@ -1,0 +1,137 @@
+MPASM  5.41                   MCELWEELAB2.ASM   2-16-2012  17:05:02         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (list)
+                      00001 list p = 16f877
+                      00002 
+  00000002            00003 Z               equ 0x02        ;Z=2
+  00000002            00004 PCL             equ 0x02        ;PCL = 0x02
+  00000006            00005 PORTB   equ     0x06    ;in BANK0
+  00000006            00006 TRISB   equ 0x06        ;in BANK1
+  00000008            00007 PORTD   equ 0x08        ;in BANK0
+  00000008            00008 TRISD   equ 0x08        ;in BANK1
+  00000003            00009 STATUS  equ 0x03        ;in all banks
+  00000020            00010 TEMP    equ 0x20        ;used to keep the current display #
+  00000006            00011 RP1     equ d'6'
+  00000005            00012 RP0     equ d'5'        
+  00000030            00013 J       equ 0x30        ;storage value for inner counter value
+  00000031            00014 K       equ 0x31        ;storage for middle
+  00000032            00015 L       equ 0x32        ;storage for outer
+                      00016 
+  00000000            00017 W               equ d'0'        ;W=0 for destinations
+  00000001            00018 F               equ d'1'        ;F=1 for destinations
+                      00019 
+0000                  00020                 org 0x000       ;program starts at Prog Mem loc. 0x00
+0000   0000           00021                 nop             ;required by older MPLAB ICD system
+                      00022                 
+0001   1683           00023                 bsf STATUS, RP0         ;move to BANK1 to access TRISB and D
+0002   3000           00024                 movlw b'00000000'
+0003   0088           00025                 movwf TRISD             ;set all pins of PORTD as outputs
+0004   30E1           00026                 movlw b'11100001'
+0005   0086           00027                 movwf TRISB             ;set bits 1-4 of TRISB to outputs
+                      00028                                             ;and all other bits to inputs
+0006   1283           00029                 bcf STATUS, RP0         ;return to BANK0
+0007   1486           00030                 bsf PORTB, 1
+0008   3000           00031 INIT:   movlw 0x00                      ;move 0 to W
+0009   00A0           00032                 movwf TEMP                      ;move 0 to TEMP in order to start displaying 0
+                      00033                 
+000A   2015           00034                 call COMP_GOTO          ;move into computed goto
+                      00035                 
+000B   0820           00036 DISPLAY: movf TEMP, W           ;move TEMP to W
+000C   2015           00037                  call COMP_GOTO         ;go and change TEMP to 0 instead of 10
+000D   0088           00038                  movwf PORTD            ;move TEMP value to PORTD to be displayed
+000E   2020           00039                  call DELAY                     ;start the delay loop
+Message[305]: Using default destination of 1 (file).
+000F   0AA0           00040                  incf TEMP                      ;increment TEMP value
+0010   300A           00041                  movlw d'10'            ;start the test to determine if at 10
+0011   0220           00042                  subwf TEMP, W
+0012   1903           00043                  btfsc STATUS,Z         ;if Z is clear, skip and continue on program
+0013   2808           00044                  goto INIT                      ;Z was not clear -> must reinitialize
+0014   280B           00045                  goto DISPLAY           ;value is not 10, continue as usual
+                      00046                 ;computed goto
+                      00047                 
+0015   0782           00048 COMP_GOTO:              addwf   PCL,F
+0016   343F           00049                                 retlw   b'00111111' ;0
+0017   3406           00050                                 retlw   b'00000110' ;1
+0018   345B           00051                                 retlw   b'01011011' ;2
+MPASM  5.41                   MCELWEELAB2.ASM   2-16-2012  17:05:02         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0019   344F           00052                                 retlw   b'01001111' ;3
+001A   3466           00053                                 retlw   b'01100110' ;4
+001B   346D           00054                                 retlw   b'01101101' ;5
+001C   347C           00055                                 retlw   b'01111100' ;6
+001D   3407           00056                                 retlw   b'00000111' ;7
+001E   347F           00057                                 retlw   b'01111111' ;8
+001F   3467           00058                                 retlw   b'01100111' ;9
+                      00059                 
+                      00060                 
+                      00061                 ;Delay loop for ~500000 microseconds
+0020   3005           00062 DELAY:  movlw   d'5'
+0021   00B2           00063                 movwf   L
+0022   3082           00064 mid_agn:movlw   d'130'
+0023   00B1           00065                 movwf  K
+0024   30FF           00066 in_agn: movlw  d'255'
+0025   00B0           00067                 movwf  J
+0026   0BB0           00068 in_nxt: decfsz J,F
+0027   2826           00069                 goto in_nxt
+0028   0BB1           00070                 decfsz K,F
+0029   2824           00071                 goto in_agn
+002A   0BB2           00072                 decfsz L,F
+002B   2822           00073                 goto mid_agn
+002C   0008           00074                 return
+                      00075                 
+Warning[205]: Found directive in column 1. (end)
+                      00076 end
+MPASM  5.41                   MCELWEELAB2.ASM   2-16-2012  17:05:02         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+COMP_GOTO                         00000015
+DELAY                             00000020
+DISPLAY                           0000000B
+F                                 00000001
+INIT                              00000008
+J                                 00000030
+K                                 00000031
+L                                 00000032
+PCL                               00000002
+PORTB                             00000006
+PORTD                             00000008
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+TEMP                              00000020
+TRISB                             00000006
+TRISD                             00000008
+W                                 00000000
+Z                                 00000002
+__16F877                          00000001
+in_agn                            00000024
+in_nxt                            00000026
+mid_agn                           00000022
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXX--- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    45
+Program Memory Words Free:  8147
+
+
+Errors   :     0
+Warnings :     2 reported,     0 suppressed
+Messages :     1 reported,     0 suppressed
+
+

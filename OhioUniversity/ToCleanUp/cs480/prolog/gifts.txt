@@ -1,0 +1,295 @@
+Script started on Sun Oct 10 20:54:00 2010
+p1% pl
+Welcome to SWI-Prolog (Version 3.1.2)
+Copyright (c) 1993-1998 University of Amsterdam.  All rights reserved.
+
+For help, use ?- help(Topic). or ?- apropos(Word).
+
+?- consult('gifts.pl')?- consult('gifts.pl').
+[WARNING: (/home/robringe/cs480/gifts.pl:16)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:18)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:20)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:22)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:26)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:27)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:28)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:29)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:30)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:33)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:37)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:38)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:40)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:41)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:42)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:45)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:49)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:50)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:51)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:52)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:54)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:58)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:59)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:60)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:61)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:62)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:63)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:67)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:68)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:69)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:70)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:71)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:75)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:76)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:77)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:78)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:79)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:80)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:83)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:87)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:88)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:89)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:90)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:91)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:93)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:97)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:98)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:99)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:100)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:101)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:102)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:106)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:107)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:108)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:109)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:110)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:114)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:115)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:116)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:117)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:118)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:119)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:121)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:125)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:126)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:127)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:128)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:129)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:131)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:135)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:136)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:137)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:138)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:140)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:144)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:145)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:146)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:147)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:148)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:150)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:154)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:155)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:156)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:157)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:158)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:162)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:163)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:164)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:165)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:166)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:167)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:171)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:172)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:173)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:174)
+        Clauses of nerdy/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:175)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:177)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:181)
+        Clauses of male/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:182)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:183)
+        Clauses of use/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:184)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:185)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:186)
+        Clauses of price/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:190)
+        Clauses of female/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:191)
+        Clauses of wear/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:192)
+        Clauses of sporty/1 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:193)
+        Clauses of age/2 are not together in the source file]
+[WARNING: (/home/robringe/cs480/gifts.pl:195)
+        Clauses of price/2 are not together in the source file]
+gifts.pl compiled, 0.00 sec, 14,840 bytes.
+
+Yes
+?- suggest.
+Does the recipient own a house? (yes/no) yes.
+
+Does the recipient have a large closet? (yes/no)no.
+
+Does the recipient go to school?  (yes/no)yes.
+
+Is recipients index finger longer 
+than their ring finger? (yes/no)yes.
+
+What is your income per week?900.
+
+Does the recipient spend most of 
+his/her time indoors? (yes/no)no.
+
+Some gifts you might consider are: 
+knitting_supplies
+purse
+
+Yes
+?- suggest.
+Does the recipient own a house? (yes/no) yes.
+
+Does the recipient have a large closet? (yes/no)yes.
+
+Does the recipient go to school?  (yes/no)no.
+
+Is recipients index finger longer 
+than their ring finger? (yes/no)yes.
+
+What is your income per week?9000 .
+
+Does the recipient spend most of 
+his/her time indoors? (yes/no)yes.
+
+Some gifts you might consider are: 
+socks
+shoes
+scarf
+watch
+necklace
+
+Yes
+?- suggest.
+Does the recipient own a house? (yes/no) no.
+
+Does the recipient have a large closet? (yes/no)yes.
+
+Does the recipient go to school?  (yes/no)no  yes.
+
+Is recipients index finger longer 
+than their ring finger? (yes/no)no.
+
+What is your income per week?600.
+
+Does the recipient spend most of 
+his/her time indoors? (yes/no)yes.
+
+Some gifts you might consider are: 
+socks
+shoes
+watch
+sweater
+
+Yes
+?- halt.
+p1% ^D
+script done on Sun Oct 10 20:56:31 2010

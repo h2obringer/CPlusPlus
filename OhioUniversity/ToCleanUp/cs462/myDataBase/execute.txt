@@ -1,0 +1,28 @@
+SQL> select *
+  2  from
+  3  Execute;
+
+SS_NUM      CODE_NAME                                                           
+----------- -------------                                                       
+068-12-6123 Evening Light                                                       
+111-11-1111 Just Cause                                                          
+123-45-6789 Desert Shield                                                       
+123-65-9876 Grand Slam                                                          
+292-69-9253 Evening Light                                                       
+292-92-7563 Juggernaut                                                          
+292-92-7563 Overlord                                                            
+311-15-1615 Just Cause                                                          
+311-15-1615 Prime Chance                                                        
+321-23-123  Evening Light                                                       
+352-82-1596 Blowdown                                                            
+
+SS_NUM      CODE_NAME                                                           
+----------- -------------                                                       
+465-00-0022 Carlota                                                             
+555-54-2341 Just Cause                                                          
+666-55-4444 Just Cause                                                          
+666-55-4444 Overlord                                                            
+
+15 rows selected.
+
+SQL> spool off

@@ -1,0 +1,12 @@
+
+Total People 54101
+Total People Alive 51034
+Total People Killed 3067
+Total Planes  613
+Total Planes Crashed 36
+Total Planes Landed 577
+Total Helicopters Landed 17
+AVG waiting time 18.435
+TOTAL waiting time 10637
+Still in Queue 1
+Total Fires 0

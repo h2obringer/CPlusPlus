@@ -1,0 +1,45 @@
+SQL> select *
+  2  from Equipment;
+
+ENAME                    COST ETYPE                                             
+------------------ ---------- ---------------------                             
+M-16                     1000 Weapon                                            
+M-249 (SAW)           1250.31 Weapon                                            
+M-9                       249 Weapon                                            
+MK19-3                2145.34 Weapon                                            
+M240B                    1620 Weapon                                            
+M-4 Carbine            1333.2 Weapon                                            
+Socks                      10 Clothing                                          
+JSLIST                 450.99 NBC Defense                                       
+M-40                    130.6 NBC Defense                                       
+M-224 Mortar            26000 Indirect Fire System                              
+Paladin                 34560 Indirect Fire System                              
+
+ENAME                    COST ETYPE                                             
+------------------ ---------- ---------------------                             
+C-130                  981000 Air Transportation                                
+Chinook Helicopter      50800 Air Transportation                                
+HMMWV                   56125 Ground Transportation                             
+M1070 HET               62300 Ground Transportation                             
+Alice Pack             101.05 Personal                                          
+A-Bag                  150.61 Personal                                          
+1QT Canteen                 5 Personal                                          
+Khyber Boots               98 Clothing                                          
+Camel Back                 32 Personal                                          
+ACU                     89.95 Clothing                                          
+PT shirt                   28 Clothing                                          
+
+ENAME                    COST ETYPE                                             
+------------------ ---------- ---------------------                             
+PT shorts                23.5 Clothing                                          
+Compass                    56 Land Navigation                                   
+Kevlar                    239 Personal Protection                               
+ACH                       264 Personal Protection                               
+PC                         16 Clothing                                          
+LBV                        53 Personal                                          
+Head Lamp                  70 Personal                                          
+MOLLE gear                 92 Personal                                          
+
+30 rows selected.
+
+SQL> spool off

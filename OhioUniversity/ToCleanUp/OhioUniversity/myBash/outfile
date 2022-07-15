@@ -1,0 +1,12 @@
+a.out
+backup2.c
+infile
+Makefile
+mybash
+mybash.c
+mybash.o
+outfile
+parser.c
+parser.h
+parser.o
+test.c

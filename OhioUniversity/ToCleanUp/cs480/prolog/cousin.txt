@@ -1,0 +1,165 @@
+Script started on Wed Oct 06 22:55:56 2010
+p1% pl
+Welcome to SWI-Prolog (Version 3.1.2)
+Copyright (c) 1993-1998 University of Amsterdam.  All rights reserved.
+
+For help, use ?- help(Topic). or ?- apropos(Word).
+
+?- consult('cousin.pl')?- consult('cousin.pl').
+[WARNING: (/home/robringe/cs480/cousin.pl:101)
+        /home/robringe/cs480/cousin.pl:101: Syntax error: Operator expected]
+[WARNING: (/home/robringe/cs480/cousin.pl:106)
+        /home/robringe/cs480/cousin.pl:106: Syntax error: Operator expected]
+cousin.pl compiled, 0.00 sec, 7,556 bytes.
+
+Yes
+?- cousin(randy,X)(randy,X).
+
+X = nathan ;
+
+X = dilon ;
+
+X = michelle ;
+
+X = bethany ;
+
+X = ryan ;
+
+X = nathan ;
+
+X = dilon ;
+
+X = michelle ;
+
+X = bethany ;
+
+X = ryan ;
+
+X = nathan ;
+
+X = dilon ;
+
+X = michelle ;
+
+X = bethany ;
+
+X = ryan ;
+
+X = nathan ;
+
+X = dilon ;
+
+X = michelle ;
+
+X = bethany ;
+
+X = ryan ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = nick ;
+
+X = nick ;
+
+X = nick ;
+
+X = nick ;
+
+X = zack ;
+
+X = zack ;
+
+X = zack ;
+
+X = zack ;
+
+X = jessica ;
+
+X = jessica ;
+
+X = jessica ;
+
+X = jessica ;
+
+X = sarah ;
+
+X = sarah ;
+
+X = sarah ;
+
+X = sarah ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = anthony ;
+
+X = zack ;
+
+X = zack ;
+
+X = zack ;
+
+X = zack ;
+
+X = nathan ;
+
+X = nathan ;
+
+X = nathan ;
+
+X = nathan ;
+
+X = dilon ;
+
+X = dilon ;
+
+X = dilon ;
+
+X = dilon ;
+
+X = michelle ;
+
+X = michelle ;
+
+X = michelle ;
+
+X = michelle ;
+
+X = bethany ;
+
+X = bethany ;
+
+X = bethany ;
+
+X = bethany ;
+
+X = ryan ;
+
+X = ryan ;
+
+X = ryan ;
+
+X = ryan ;
+
+X = nick ;
+
+X = nick ;
+
+X = nick ;
+
+X = nick ;
+
+No
+?- halt.
+p1% ^D
+script done on Wed Oct 06 22:57:32 2010

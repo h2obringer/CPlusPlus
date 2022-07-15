@@ -1,0 +1,266 @@
+MPASM  5.41                      LAB3CODE.ASM   2-24-2012  11:14:36         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;**********************************************************
+                      00002 ;*   Laboratory # 0
+                      00003 ;*      Program reads the state of RB0 pushbutton (normal=1)
+                      00004 ;*      On each succesive press, rotates segment on left-most
+                      00005 ;*      7 segment display. (portD if simulating)
+                      00006 ;**********************************************************
+                      00007 
+                      00008         list p=16f877   ; Assembler directive to turn list on
+                      00009                         ; and give 16F877 listing codes
+                      00010 ;
+                      00011 ; Define some 8-bit file register labels
+                      00012 ; See PIC16F877 datasheet for location of the Special Function Registers 
+                      00013 ;
+                      00014 
+  00000002            00015 Z               equ 0x02        ;Z=2
+  00000002            00016 PCL             equ 0x02        ;PCL = 0x02
+  00000006            00017 PORTB   equ     0x06    ; in BANK 0
+  00000006            00018 TRISB   equ     0x06    ; in BANK 1
+  00000008            00019 PORTD   equ     0x08    ; in BANK 0
+  00000008            00020 TRISD   equ     0x08    ; in BANK 1
+  00000003            00021 STATUS  equ     0x03    ; in all BANKS
+  0000000B            00022 INTCON  equ 0x0B        ; in all BANKS
+  00000020            00023 K               equ 0x20
+  00000021            00024 J               equ 0x21
+  00000022            00025 TEMP_W  equ 0x22
+  00000023            00026 T_STAT  equ 0x23
+  00000024            00027 D1              equ 0x24
+  00000025            00028 D2              equ 0x25
+  00000026            00029 D3              equ 0x26
+  00000027            00030 D4              equ 0x27
+  00000001            00031 TMR0    equ 0x01
+  00000001            00032 OPTION_REG equ 0x01
+                      00033 
+  00000000            00034 W       equ     d'0'    ; destination=W  ('working' register)
+  00000001            00035 F       equ     d'1'    ; destination=f
+  00000006            00036 RP1     equ     d'6'    ; bank select high bit in status reg.
+  00000005            00037 RP0     equ     d'5'    ; bank select low bit in status reg.
+                      00038 
+                      00039 
+0000                  00040         org     0x000   ; program starts at Program Memory location 0x0000
+0000   0000           00041         nop             ; nop required by older MPLAB ICD system
+0001   2805           00042         goto INIT
+0004                  00043         org 0x004
+0004   283A           00044         goto TMR0_ISR
+                      00045         
+0005   0183           00046 INIT:   clrf STATUS
+0006   1683           00047                 bsf STATUS, RP0         ;move to BANK1 to access TRISB and D
+0007   3000           00048                 movlw b'00000000'
+0008   0088           00049                 movwf TRISD             ;set all pins of PORTD as outputs
+0009   30E1           00050                 movlw b'11100001'
+000A   0086           00051                 movwf TRISB             ;set bits 1-4 of TRISB to outputs
+                      00052                                             ;and all other bits to inputs
+000B   30D7           00053                 movlw b'11010111'       ;Use clock for timer0 and use prescaler of 256
+MPASM  5.41                      LAB3CODE.ASM   2-24-2012  11:14:36         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000C   0081           00054                 movwf OPTION_REG
+                      00055                 
+000D   1283           00056                 bcf STATUS, RP0         ;return to BANK0
+                      00057                 
+000E   3020           00058                 movlw b'00100000'       ;turn on timer0 interrupt
+000F   008B           00059                 movwf INTCON            ;
+0010   30D8           00060                 movlw d'216'            ;initialize start value of the timer0
+0011   0081           00061                 movwf TMR0                      ;
+0012   178B           00062                 bsf INTCON,7            ;enable global interrupt
+0013   3000           00063                 movlw 0x00
+0014   00A4           00064                 movwf D1
+0015   00A5           00065                 movwf D2
+0016   00A6           00066                 movwf D3
+0017   00A7           00067                 movwf D4
+                      00068                 
+0018   0824           00069 MAIN:   movf D1,W               ;move value of the display to w
+0019   2046           00070         call NUMBER_124
+001A   0088           00071                 movwf PORTD             ;
+001B   3010           00072                 movlw b'00010000' ;7seg display right-most
+001C   0086           00073         movwf PORTB
+001D   2031           00074         call DELAY
+                      00075         
+001E   0825           00076         movf D2,W               ;move value of the display to w
+001F   2046           00077         call NUMBER_124
+0020   0088           00078                 movwf PORTD             ;
+0021   3008           00079                 movlw b'00001000' ;7seg display right-mid
+0022   0086           00080         movwf PORTB
+0023   2031           00081         call DELAY
+                      00082         
+0024   0826           00083         movf D3,W               ;move value of the display to w
+0025   2051           00084         call NUMBER_3
+0026   0088           00085                 movwf PORTD             ;
+0027   3004           00086                 movlw b'00000100' ;7seg display left-mid
+0028   0086           00087         movwf PORTB
+0029   2031           00088         call DELAY
+                      00089         
+002A   0827           00090         movf D4,W               ;move value of the display to w
+002B   2046           00091         call NUMBER_124
+002C   0088           00092                 movwf PORTD             ;
+002D   3002           00093                 movlw b'00000010' ;7seg display left-most
+002E   0086           00094         movwf PORTB
+002F   2031           00095         call DELAY
+0030   2818           00096         goto MAIN
+                      00097                 
+                      00098 
+0031   3006           00099 DELAY:          movlw d'6'      ;outer loop iterations
+0032   00A0           00100                         movwf K         ;
+0033   30DD           00101 INNER:          movlw d'221';inner loop iterations
+0034   00A1           00102                         movwf J         ;
+0035   0BA1           00103 NXT:            decfsz J,F      ;decrement inner loop and store in J
+0036   2835           00104                         goto NXT        ;go back to decrementing inner loop if not yet 0
+0037   0BA0           00105                         decfsz K,F      ;decrement outer loop and store in K
+0038   2833           00106                         goto INNER      ;go back and do inner loop again if outer loop isn't 0
+MPASM  5.41                      LAB3CODE.ASM   2-24-2012  11:14:36         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0039   0008           00107                         return
+                      00108                 
+003A   00A2           00109 TMR0_ISR:       movwf TEMP_W    ;save context
+003B   0E03           00110                         swapf STATUS,W  ;save context
+003C   00A3           00111                         movwf T_STAT    ;save context
+                      00112                         
+003D   205C           00113                         call INC_VALUE
+                      00114                         
+003E   110B           00115                         bcf INTCON,2    ;clear the timer interrupt flag so that 
+                      00116                                                         ;we don't call this ISR again.
+                      00117                         
+003F   30D8           00118                         movlw d'216'
+0040   0081           00119                         movwf TMR0
+                      00120                         
+                      00121                         
+0041   0E23           00122                         swapf T_STAT,W  ;load context
+0042   0083           00123                         movwf STATUS    ;load context
+0043   0EA2           00124                         swapf TEMP_W,F  ;load context
+0044   0E22           00125                         swapf TEMP_W,W  ;load context
+0045   0009           00126                         retfie
+                      00127                         
+0046   0782           00128 NUMBER_124:     addwf   PCL,F
+0047   343F           00129                         retlw   b'00111111' ;0
+0048   3406           00130                         retlw   b'00000110' ;1
+0049   345B           00131                         retlw   b'01011011' ;2
+004A   344F           00132                         retlw   b'01001111' ;3
+004B   3466           00133                         retlw   b'01100110' ;4
+004C   346D           00134                         retlw   b'01101101' ;5
+004D   347C           00135                         retlw   b'01111100' ;6
+004E   3407           00136                         retlw   b'00000111' ;7
+004F   347F           00137                         retlw   b'01111111' ;8
+0050   3467           00138                         retlw   b'01100111' ;9
+                      00139                         
+0051   0782           00140 NUMBER_3:       addwf   PCL,F           ;different to display the decimal point
+0052   34BF           00141                         retlw   b'10111111' ;0.
+0053   3486           00142                         retlw   b'10000110' ;1.
+0054   34DB           00143                         retlw   b'11011011' ;2.
+0055   34CF           00144                         retlw   b'11001111' ;3.
+0056   34E6           00145                         retlw   b'11100110' ;4.
+0057   34ED           00146                         retlw   b'11101101' ;5.
+0058   34FC           00147                         retlw   b'11111100' ;6.
+0059   3487           00148                         retlw   b'10000111' ;7.
+005A   34FF           00149                         retlw   b'11111111' ;8.
+005B   34E7           00150                         retlw   b'11100111' ;9. 
+                      00151                         
+005C   0AA4           00152 INC_VALUE:      incf D1,F               
+005D   300A           00153                         movlw d'10'
+005E   0224           00154                         subwf D1,W
+005F   1D03           00155                         btfss STATUS,Z
+0060   0008           00156                         return          ;incrementing D1
+0061   3000           00157                         movlw 0x00      ;if roll-over then we increment D2 and reset D1 to 0
+                      00158                         
+0062   00A4           00159                         movwf D1
+MPASM  5.41                      LAB3CODE.ASM   2-24-2012  11:14:36         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0063   0AA5           00160                         incf D2,F
+0064   300A           00161                         movlw d'10'
+0065   0225           00162                         subwf D2,W
+0066   1D03           00163                         btfss STATUS,Z
+0067   0008           00164                         return
+0068   3000           00165                         movlw 0x00
+                      00166                         
+0069   00A5           00167                         movwf D2
+006A   0AA6           00168                         incf D3,F
+006B   300A           00169                         movlw d'10'
+006C   0226           00170                         subwf D3,W
+006D   1D03           00171                         btfss STATUS,Z
+006E   0008           00172                         return
+006F   3000           00173                         movlw 0x00
+                      00174                         
+0070   00A6           00175                         movwf D3
+0071   0AA7           00176                         incf D4,F
+0072   300A           00177                         movlw d'10'
+0073   0227           00178                         subwf D4,W
+0074   1D03           00179                         btfss STATUS,Z
+0075   0008           00180                         return
+0076   3000           00181                         movlw 0x00
+0077   00A7           00182                         movwf D4
+0078   0008           00183                         return                  
+                      00184                 
+Warning[205]: Found directive in column 1. (end)
+                      00185 end
+MPASM  5.41                      LAB3CODE.ASM   2-24-2012  11:14:36         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+D1                                00000024
+D2                                00000025
+D3                                00000026
+D4                                00000027
+DELAY                             00000031
+F                                 00000001
+INC_VALUE                         0000005C
+INIT                              00000005
+INNER                             00000033
+INTCON                            0000000B
+J                                 00000021
+K                                 00000020
+MAIN                              00000018
+NUMBER_124                        00000046
+NUMBER_3                          00000051
+NXT                               00000035
+OPTION_REG                        00000001
+PCL                               00000002
+PORTB                             00000006
+PORTD                             00000008
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+TEMP_W                            00000022
+TMR0                              00000001
+TMR0_ISR                          0000003A
+TRISB                             00000006
+TRISD                             00000008
+T_STAT                            00000023
+W                                 00000000
+Z                                 00000002
+__16F877                          00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XX--XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXX-------
+
+All other memory blocks unused.
+
+Program Memory Words Used:   119
+Program Memory Words Free:  8073
+
+
+Errors   :     0
+Warnings :     1 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

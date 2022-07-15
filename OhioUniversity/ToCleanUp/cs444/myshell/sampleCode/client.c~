@@ -1,0 +1,142 @@
+/* tcpecho.c - main, tcpecho */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include "libnet.h"
+
+
+#define LINELEN         256
+
+static int tcpecho(char *host, char *service);
+
+
+/*------------------------------------------------------------------------
+ * main - TCP client for ECHO service
+ *------------------------------------------------------------------------
+ */
+int
+main(int argc, char **argv)
+{
+        char    *host = "localhost";    /* host to use if none supplied */
+        char    *service = "5000";      /* default service name         */
+
+        switch (argc) {
+        case 1:
+                host = "localhost";
+                break;
+        case 3:
+                service = argv[2];
+                /* FALL THROUGH */
+        case 2:
+                host = argv[1];
+                break;
+        default:
+                fprintf(stderr, "usage: tcpecho [host [port]]\n");
+                exit(1);
+        }
+
+        tcpecho(host, service);
+
+        exit(0);
+}
+
+/*------------------------------------------------------------------------
+ * tcpecho - send input to ECHO service on specified host and print reply
+ *------------------------------------------------------------------------
+ */
+int
+tcpecho(char *host, char *service)
+{
+  int j;
+  char    buf[LINELEN+1];	/* buffer for one line of text  */
+  int     s;		/* socket descriptor */
+  int	len;
+  int endCommand=0;
+  char password[LINELEN+1];
+  char confirmation[LINELEN+1];
+
+  confirmation[0] = 'N';
+  confirmation[1] = 'O';
+  confirmation[2] = '\00';
+
+
+
+  s = connectTCP(host, service); /* connect as a Unix file descriptor (fd) */
+
+
+
+  /*  read a line from stdin */
+  while(strcmp((char*)confirmation,"YES")!=0){
+    fprintf(stdout,"Enter the password:\n>>");
+    fgets((char*)password, sizeof(password), stdin);
+
+    fprintf(stdout,"The password you entered was: %s\n",password);
+
+    strncat(password,"\r\n",sizeof((char*)password));   /* tack on the official end of line sequence */
+    encrypt_data(password);
+    write(s, password, strlen(password)); /*finally send over the password*/
+
+    len=read(s,confirmation,sizeof(confirmation)); /*read a confirmation of the password*/
+    decrypt_data((char*)confirmation);  /*decrypt confirmation*/
+    
+    for(j=0;confirmation[j]!=NULL;++j){ /*NULL terminate the confirmation for comparison*/
+      if(confirmation[j]=='\r'){
+        confirmation[j]='\00';
+        break;
+      }
+    }
+    fprintf(stdout,"The confirmation came back %s\n",confirmation);
+  }
+
+    fprintf(stdout,"The confirmation came back %s\n",confirmation);
+
+
+
+  fprintf(stdout,">>");
+  if (fgets(buf, sizeof(buf), stdin) == NULL)
+    exit(0);
+
+  /* remove the newline */
+  buf[strlen(buf)-1] = '\00';
+  fprintf(stderr,"You said: %s\n", buf);
+
+  /* send the characters down the TCP connection */
+  strncat(buf,"\r\n",sizeof(buf));   /* tack on the official end of line sequence */
+  fprintf(stdout,"before encrypting command: %s\n", buf);
+  encrypt_data(buf);
+  fprintf(stdout,"after encrypting command: %s\n", buf);
+  /**/
+
+  if (write(s,buf,strlen(buf)) != strlen(buf)) {
+    perror("write");
+    exit(-2);
+  }
+
+  /* read back an answer */
+  while(endCommand==0){
+    len=read(s,buf,sizeof(buf));
+    /*fprintf(stdout,"before decrypting: %s\n",buf);*/
+    decrypt_data(buf);
+    /*fprintf(stdout,"after decrypting: %s\n",buf);*/
+    if (len == 0){
+      ++endCommand;/* EOF */
+      break;
+    }else if(len == -1){
+      perror("read");
+    }
+    /*buf[len] = '\00';*/ /* NULL terminate so we can treat it as a string */
+    
+    for(j=0;buf[j]!=NULL;++j){
+      if(buf[j]=='\r'){
+        /*fprintf(stdout,"Found it");*/
+        buf[j]='\00';
+        break;
+      }
+    }
+    fprintf(stdout,"%s\n",buf);
+  }
+
+  return(0);
+}

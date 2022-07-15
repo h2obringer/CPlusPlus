@@ -1,0 +1,37 @@
+--This query answers the question: Which mission had the greatest amount of casualties?
+
+SQL> select Code_Name
+  2  from Mission
+  3  where Num_Casualties>=ALL(
+  4  select Num_Casualties
+  5  from Mission);
+
+--This query answers the question: When did John Sandman get issued his M240B and what was it's Equipment ID number?
+
+CODE_NAME                                                                       
+-------------                                                                   
+Just Cause                                                                      
+
+SQL> select EID_Num,Date_Issued
+  2  from Issued,Soldier,Equipment
+  3  where Fname='John' AND Lname='Sandman'
+  4  AND Issued.SS_Num=Soldier.SS_Num AND
+  5  Issued.Ename=Equipment.Ename AND
+  6  Equipment.Ename='M240B';
+
+   EID_NUM DATE_ISSU                                                            
+---------- ---------                                                            
+    456363 01-MAY-10     
+
+--This query answers the question: What weapons cost more than $1500?                                                       
+
+SQL> select Ename
+  2  from Equipment
+  3  where Cost>=1500 AND Etype='Weapon';
+
+ENAME                                                                           
+------------------                                                              
+MK19-3                                                                          
+M240B                                                                           
+
+SQL> spool off

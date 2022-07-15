@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <errno.h>
+#include <string.h>
+
+void encrypt_data(char* data){
+  int i;
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%2==0){
+        data[i]+=5;
+      }else{
+        data[i]-=1;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%3==0){
+        data[i]-=2;
+      }else{
+        data[i]-=1;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%4==0){
+        data[i]+=3;
+      }else{
+        data[i]+=4;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%2==0){
+        data[i]-=1;
+      }else{
+        data[i]-=2;
+      }
+    }
+  }
+}
+
+void decrypt_data(char* data){
+  int i;
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%2==0){
+        data[i]+=1;
+      }else{
+        data[i]+=2;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%4==0){
+        data[i]-=3;
+      }else{
+        data[i]-=4;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%3==0){
+        data[i]+=2;
+      }else{
+        data[i]+=1;
+      }
+    }
+  }
+  for(i=0;data[i]!=NULL;++i){
+    if((data[i]!='\r')&&(data[i]!='\n')){
+      if(i%2==0){
+        data[i]-=5;
+      }else{
+        data[i]+=1;
+      }
+    }
+  }
+}

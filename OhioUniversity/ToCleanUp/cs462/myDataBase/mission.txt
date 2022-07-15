@@ -1,0 +1,78 @@
+SQL> select *
+  2  from Mission;
+
+CODE_NAME     MTYPE             STAR END_ START_DAT END_DATE  NUM_CASUALTIES    
+------------- ----------------- ---- ---- --------- --------- --------------    
+PERCENT_COLLATERAL_DAMAGE                                                       
+-------------------------                                                       
+Juggernaut    Raid              0530 2300 23-MAR-00 25-MAR-00             10    
+                       38                                                       
+                                                                                
+Sealion       Recon             2200 0200 25-JUL-98 26-JUL-98              0    
+                        1                                                       
+                                                                                
+Rainbow       Attack            1350 1810 28-AUG-02 28-AUG-02              4    
+                       23                                                       
+                                                                                
+
+CODE_NAME     MTYPE             STAR END_ START_DAT END_DATE  NUM_CASUALTIES    
+------------- ----------------- ---- ---- --------- --------- --------------    
+PERCENT_COLLATERAL_DAMAGE                                                       
+-------------------------                                                       
+Overlord      Feint             0900 2300 14-JUN-01 14-JUN-01              0    
+                        5                                                       
+                                                                                
+Desert Shield Ambush            0400 1000 08-JUL-12 08-JUL-12              0    
+                       17                                                       
+                                                                                
+Eagle Claw    Ambush            0640 1240 17-SEP-07 17-SEP-07              1    
+                       22                                                       
+                                                                                
+
+CODE_NAME     MTYPE             STAR END_ START_DAT END_DATE  NUM_CASUALTIES    
+------------- ----------------- ---- ---- --------- --------- --------------    
+PERCENT_COLLATERAL_DAMAGE                                                       
+-------------------------                                                       
+Evening Light Recon             0900 0900 03-MAR-04 07-MAR-04              0    
+                        0                                                       
+                                                                                
+Grand Slam    Secure and Defend 1600 2330 06-JUL-06 09-JUL-06              7    
+                       17                                                       
+                                                                                
+Prime Chance  Resupply          2200 0500 07-OCT-00 08-OCT-00              2    
+                       16                                                       
+                                                                                
+
+CODE_NAME     MTYPE             STAR END_ START_DAT END_DATE  NUM_CASUALTIES    
+------------- ----------------- ---- ---- --------- --------- --------------    
+PERCENT_COLLATERAL_DAMAGE                                                       
+-------------------------                                                       
+Nimble Archer Cordon and Search 1730 2200 29-APR-01 29-APR-01              3    
+                       26                                                       
+                                                                                
+Blowdown      Raid              0030 1800 25-JUN-09 25-JUN-09              7    
+                       73                                                       
+                                                                                
+Pluto         Cordon and Search 0750 1005 26-AUG-01 26-AUG-01              2    
+                        4                                                       
+                                                                                
+
+CODE_NAME     MTYPE             STAR END_ START_DAT END_DATE  NUM_CASUALTIES    
+------------- ----------------- ---- ---- --------- --------- --------------    
+PERCENT_COLLATERAL_DAMAGE                                                       
+-------------------------                                                       
+Success       Resupply          1400 1840 15-MAR-98 15-MAR-98              0    
+                        2                                                       
+                                                                                
+Just Cause    Secure and Defend 0600 0300 16-JAN-04 20-JAN-04             27    
+                       24                                                       
+                                                                                
+Carlota       Recon             2100 2350 15-JUL-04 15-JUL-04              0    
+                        1                                                       
+                                                                                
+
+15 rows selected.
+
+SQL> ! ls
+
+SQL> spool off

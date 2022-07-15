@@ -1,0 +1,182 @@
+//*******************************************************************
+//Author: Randy Obringer
+//File: main.cc
+//Description: This is what actually declares the game object so that 
+//we may play checkers. 
+//*******************************************************************
+#include <iostream>
+#include "checkers.h"
+#include "game.h"
+using namespace std;
+
+int main(){
+  char c;
+  do{
+    checkers game1;
+    checkers::who winner;
+    winner=game1.play();
+    switch(winner){
+      case checkers::HUMAN:
+        cout << "Player 1 wins" << endl;
+        break;
+      case checkers::COMPUTER:
+        cout << "Player 2 wins" << endl;
+        break;
+      case checkers::NEUTRAL:
+        cout << "Draw" << endl;
+        break;
+    }
+    cout << "Press Y to play again, press N to quit" << endl;
+    cin >> c;
+  }while((c=='Y')||(c=='y'));
+}
+
+/*std::string checkers::where_jump_is(){ //tells if a jump is available after a move has been made
+  string move,row,column,row2,column2=" ";
+  int a,b,c,d;
+  std::stringstream convert;
+  for(int i=0;i<ROWS;i++){
+    for(int j=0;j<COLUMNS;j++){
+      a=i; b=j;
+      convert >> a;
+      row=convert.str();
+      convert >> b;
+      column=convert.str();
+      if(next_mover()==HUMAN){
+        if((board[i][j]==BLACK_PIECE)||(board[i][j]==BLACK_KING)){
+          if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==BLACK_KING)&&(board[i+1][j+1]==RED_PIECE)&&(board[i+2][j+2]==BLACK_SPACE)){
+	    c=i+2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==BLACK_KING)&&(board[i+1][j+1]==RED_KING)&&(board[i+2][j+2]==BLACK_SPACE)){
+            c=i+2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==BLACK_KING)&&(board[i+1][j-1]==RED_PIECE)&&(board[i+2][j-2]==BLACK_SPACE)){
+            c=i+2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==BLACK_KING)&&(board[i+1][j-1]==RED_KING)&&(board[i+2][j-2]==BLACK_SPACE)){
+            c=i+2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i-1][j+1]==RED_PIECE)&&(board[i-2][j+2]==BLACK_SPACE)){
+            c=i-2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i-1][j+1]==RED_KING)&&(board[i-2][j+2]==BLACK_SPACE)){
+            c=i-2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i-1][j-1]==RED_PIECE)&&(board[i-2][j-2]==BLACK_SPACE)){
+            c=i-2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i-1][j-1]==RED_KING)&&(board[i-2][j-2]==BLACK_SPACE)){
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }
+        }
+      }else if(next_mover()==COMPUTER){
+        if((board[i][j]==RED_PIECE)||(board[i][j]==RED_KING)){
+          if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i+1][j+1]==RED_PIECE)&&(board[i+2][j+2]==BLACK_SPACE)){
+	    c=i+2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i+1][j+1]==RED_KING)&&(board[i+2][j+2]==BLACK_SPACE)){
+            c=i+2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i+1][j-1]==RED_PIECE)&&(board[i+2][j-2]==BLACK_SPACE)){
+            c=i+2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i+1][j-1]==RED_KING)&&(board[i+2][j-2]==BLACK_SPACE)){
+            c=i+2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==RED_KING)&&(board[i-1][j+1]==RED_PIECE)&&(board[i-2][j+2]==BLACK_SPACE)){
+            c=i-2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==RED_KING)&&(board[i-1][j+1]==RED_KING)&&(board[i-2][j+2]==BLACK_SPACE)){
+            c=i-2; d=j+2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move;
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i][j]==RED_KING)&&(board[i-1][j-1]==RED_PIECE)&&(board[i-2][j-2]==BLACK_SPACE)){
+            c=i-2; d=j-2;
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }else if((i-2>=0)&&(i+2<=7)&&(j-2>=0)&&(j+2<=7)&&(board[i-1][j-1]==RED_KING)&&(board[i][j]==RED_KING)&&(board[i-2][j-2]==BLACK_SPACE)){
+            convert >> c;
+            row2=convert.str();
+            convert >> d;
+            column2=convert.str();
+            move=row+" "+column+" "+row2+" "+column2;
+            return move; 
+          }
+        }
+      }
+    }
+  }
+}*/

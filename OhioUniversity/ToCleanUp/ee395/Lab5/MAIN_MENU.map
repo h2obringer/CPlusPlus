@@ -1,0 +1,80 @@
+MPLINK 4.39, Linker
+Linker Map File - Created Fri Mar 09 11:59:59 2012
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x0001fa
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x0000fc      
+            253 out of 8454 program addresses used, program memory utilization is 2%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    CLROR   0x000092    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    FIRST   0x0000a3    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     INIT   0x000063    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     LAST   0x0000ab    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 LED2_OFF   0x0000f7    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                  LED2_ON   0x0000f5    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 LED3_OFF   0x0000fb    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                  LED3_ON   0x0000f9    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    LED_2   0x0000ef    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    LED_3   0x0000f2    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     LOOP   0x0000c4    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     MAIN   0x00006f    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     MENU   0x000004    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      PID   0x0000b6    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      RCV   0x00008a    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                   RXWAIT   0x00008b    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+               SEND_FIRST   0x0000c8    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                SEND_LAST   0x0000d5    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                SEND_MENU   0x000095    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 SEND_PID   0x0000e2    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    TXMIT   0x0000c3    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      WHY   0x0000ca    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY2   0x0000d7    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY3   0x000097    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY4   0x0000e4    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     MENU   0x000004    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     INIT   0x000063    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     MAIN   0x00006f    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      RCV   0x00008a    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                   RXWAIT   0x00008b    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    CLROR   0x000092    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                SEND_MENU   0x000095    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY3   0x000097    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    FIRST   0x0000a3    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     LAST   0x0000ab    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      PID   0x0000b6    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    TXMIT   0x0000c3    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     LOOP   0x0000c4    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+               SEND_FIRST   0x0000c8    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                      WHY   0x0000ca    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                SEND_LAST   0x0000d5    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY2   0x0000d7    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 SEND_PID   0x0000e2    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                     WHY4   0x0000e4    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    LED_2   0x0000ef    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                    LED_3   0x0000f2    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                  LED2_ON   0x0000f5    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 LED2_OFF   0x0000f7    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                  LED3_ON   0x0000f9    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+                 LED3_OFF   0x0000fb    program     static H:\EE395A\Lab5\MAIN_MENU.asm
+
+
