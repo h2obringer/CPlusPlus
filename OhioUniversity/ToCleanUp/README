@@ -1,5 +1,0 @@
-to compile a program and have it be named use -o
-
-Ex:
-
-g++ main.cc -o filename
