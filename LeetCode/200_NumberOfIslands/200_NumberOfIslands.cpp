@@ -74,56 +74,56 @@ private:
 
 //TODO - APPARENTLY THE BFS SOLUTION IS TOO SLOW....
 
-//class Solution {
-//public:
-//    int numIslands(std::vector<std::vector<char>>& grid) {
-//        if (grid.size() <= 0) return 0;
-//        int N = grid.size();
-//        int M = grid[0].size();
-//
-//        int result = 0;
-//        std::queue<std::pair<int, int>> q; //store the coordinates of the next land tile
-//
-//        for (int i = 0; i < N; i++) {
-//            for (int j = 0; j < M; j++) {
-//                if (grid[i][j] == '1') {
-//                    result++;
-//                    q.push(std::pair<int, int>(i, j));
-//                    while (!q.empty()) {
-//                        std::pair<int, int> current = q.front();
-//                        int x = current.first;
-//                        int y = current.second;
-//                        q.pop();
-//                        grid[x][y] = '#';
-//
-//                        //up
-//                        int up = y - 1;
-//                        if (up >= 0 && grid[x][up] == '1') {
-//                            q.push(std::pair<int, int>(x, up));
-//                        }
-//                        //down
-//                        int down = y + 1;
-//                        if (down < M && grid[x][down] == '1') {
-//                            q.push(std::pair<int, int>(x, down));
-//                        }
-//                        //left
-//                        int left = x - 1;
-//                        if (left >= 0 && grid[left][y] == '1') {
-//                            q.push(std::pair<int, int>(left, y));
-//                        }
-//                        //right
-//                        int right = x + 1;
-//                        if (right < N && grid[right][y] == '1') {
-//                            q.push(std::pair<int, int>(right, y));
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        return result;
-//    }
-//};
+class Solution2 {
+public:
+    int numIslands(std::vector<std::vector<char>>& grid) {
+        if (grid.size() <= 0) return 0;
+        int N = grid.size();
+        int M = grid[0].size();
+
+        int result = 0;
+        std::queue<std::pair<int, int>> q; //store the coordinates of the next land tile
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (grid[i][j] == '1') {
+                    result++;
+                    q.push(std::pair<int, int>(i, j));
+                    while (!q.empty()) {
+                        std::pair<int, int> current = q.front();
+                        int x = current.first;
+                        int y = current.second;
+                        q.pop();
+                        grid[x][y] = '#';
+
+                        //up
+                        int up = y - 1;
+                        if (up >= 0 && grid[x][up] == '1') {
+                            q.push(std::pair<int, int>(x, up));
+                        }
+                        //down
+                        int down = y + 1;
+                        if (down < M && grid[x][down] == '1') {
+                            q.push(std::pair<int, int>(x, down));
+                        }
+                        //left
+                        int left = x - 1;
+                        if (left >= 0 && grid[left][y] == '1') {
+                            q.push(std::pair<int, int>(left, y));
+                        }
+                        //right
+                        int right = x + 1;
+                        if (right < N && grid[right][y] == '1') {
+                            q.push(std::pair<int, int>(right, y));
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+};
 
 int main()
 {
