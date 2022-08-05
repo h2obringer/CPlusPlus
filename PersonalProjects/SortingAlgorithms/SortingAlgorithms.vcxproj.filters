@@ -50,6 +50,9 @@
     <ClInclude Include="MyShellSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyBucketSort.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MyMergesort.inl">
@@ -74,6 +77,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="MyShellSort.inl">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="MyBucketSort.inl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

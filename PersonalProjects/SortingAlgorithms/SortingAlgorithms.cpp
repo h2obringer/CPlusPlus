@@ -12,6 +12,7 @@
 #include "MySelectionSort.h"
 #include "MyTreeSort.h"
 #include "MyShellSort.h"
+#include "MyBucketSort.h"
 
 using namespace std;
 
@@ -52,8 +53,11 @@ int main()
 	/*MyTreeSort<int> sort;
 	sort.TreeSort(test);*/
 
-	MyShellSort<int> sort;
-	sort.ShellSort(test);
+	/*MyShellSort<int> sort;
+	sort.ShellSort(test);*/
+
+	MyBucketSort<int> sort;
+	sort.BucketSort(test);
 
     PrintArray(test);
 

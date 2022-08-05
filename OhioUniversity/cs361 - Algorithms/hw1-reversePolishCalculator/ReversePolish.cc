@@ -89,7 +89,7 @@ string ReversePolish::infix(const string &rpstring){
   reverseStack(use);
  
   while(!use.empty()){
-    if((use.top()=="+")||(use.top()=="-")||(use.top()=="*")|(use.top()=="/")){
+    if((use.top()=="+")||(use.top()=="-")||(use.top()=="*")||(use.top()=="/")){
       concatenate(use,numbers);
     }else{
       numbers.push(use.top());
