@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "MyQuicksort.h"
-#include "MyMergesort.h"
+//#include "MyMergesort.h"
 #include "MyInsertionSort.h"
 #include "MyTimsort.h"
 #include "MyHeapsort.h"
@@ -13,6 +13,7 @@
 #include "MyTreeSort.h"
 #include "MyShellSort.h"
 #include "MyBucketSort.h"
+#include <math.h>
 
 using namespace std;
 
@@ -24,6 +25,7 @@ void PrintArray(vector<T> arr) {
 
 	cout << endl;
 }
+
 
 int main()
 {
@@ -56,10 +58,16 @@ int main()
 	/*MyShellSort<int> sort;
 	sort.ShellSort(test);*/
 
-	MyBucketSort<int> sort;
-	sort.BucketSort(test);
+	//MyBucketSort<int> sort;
+	//sort.BucketSort(test);
 
     PrintArray(test);
+
+    float x = 2.1;
+    float y = x / 2.0;
+
+    int z = ceil(y);
+
 
 	return 0;
 }
