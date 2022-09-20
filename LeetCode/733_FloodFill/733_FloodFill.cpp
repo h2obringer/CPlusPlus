@@ -38,28 +38,33 @@ private:
 	int rowCount = 0;
 	int colCount = 0;
 public:
-	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
 		rowCount = image.size();
 		if(rowCount == 0) return image;
 		colCount = image[0].size();
-		
-		queue<pair<int, int>> q;
-		q.push(pair<int, int> (sr, sc));
 
 		int oldColor = image[sr][sc];
+		if (oldColor == newColor) return image; //if the starting block is already the color we want we are done
+
+		queue<pair<int, int>> q;
+		q.push(pair<int, int> (sr, sc));
+		image[sr][sc] = newColor; //mark it as visited...
+
+		int next[4][2] = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
 
 		while (!q.empty()) {
 			int row = q.front().first;
 			int col = q.front().second;
 			q.pop();
 
-			if (row >= 0 && row < rowCount && col >= 0 && col < colCount && image[row][col] == oldColor) {
-				image[row][col] = color;
+			for (int i = 0; i < 4; i++) {
+				int neighbor_row = row + next[i][0];
+				int neighbor_col = col + next[i][1];
+				if (neighbor_row >= 0 && neighbor_row < rowCount && neighbor_col >= 0 && neighbor_col < colCount && image[neighbor_row][neighbor_col] == oldColor) {
+					image[neighbor_row][neighbor_col] = newColor; //mark it as visited
 
-				q.push(pair<int, int>(row, col - 1));
-				q.push(pair<int, int>(row, col + 1));
-				q.push(pair<int, int>(row - 1, col));
-				q.push(pair<int, int>(row + 1, col));
+					q.push(pair<int, int>(neighbor_row, neighbor_col));
+				}
 			}
 		}
 
