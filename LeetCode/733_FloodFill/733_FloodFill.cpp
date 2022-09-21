@@ -32,7 +32,6 @@ CONSTRAINTS:
     0 <= sc < n
 */
 
-//Causes a timeout...
 class Solution {
 private:
 	int rowCount = 0;
@@ -72,27 +71,25 @@ public:
 	}
 };
 
-//DFS Solution - causes stack overflow...
+//DFS Solution
 class Solution2 {
 public:
-	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+	vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
 		int oldColor = image[sr][sc];
-		if (oldColor == color) return image; //no work to be done...
-		vector<vector<bool>> visited(image.size(), vector<bool>(image[0].size(), false));
+		if (oldColor == newColor) return image; //no work to be done...
 
-		floodFill(image, sr, sc, oldColor, color, visited);
+		floodFill(image, sr, sc, oldColor, newColor);
 
 		return image;
 	}
 
-	void floodFill(vector<vector<int>>& image, int sr, int sc, int oldcolor, int newcolor, vector<vector<bool>>& visited) {
-		if (image[sr][sc] == oldcolor && !visited[sr][sc]) {
-			visited[sr][sc] = true;
+	void floodFill(vector<vector<int>>& image, int sr, int sc, int& oldcolor, int& newcolor) {
+		if (image[sr][sc] == oldcolor) {
 			image[sr][sc] = newcolor;
-			if (sc > 0) floodFill(image, sr, sc - 1, oldcolor, newcolor, visited);
-			if (sc + 1 < image.size()) floodFill(image, sr, sc + 1, oldcolor, newcolor, visited);
-			if (sr > 0) floodFill(image, sr - 1, sc, oldcolor, newcolor, visited);
-			if (sr + 1 < image[0].size()) floodFill(image, sr + 1, sc, oldcolor, newcolor, visited);
+			if (sc > 0) floodFill(image, sr, sc - 1, oldcolor, newcolor);
+			if (sc + 1 < image[0].size()) floodFill(image, sr, sc + 1, oldcolor, newcolor);
+			if (sr > 0) floodFill(image, sr - 1, sc, oldcolor, newcolor);
+			if (sr + 1 < image.size()) floodFill(image, sr + 1, sc, oldcolor, newcolor);
 		}
 	}
 };
