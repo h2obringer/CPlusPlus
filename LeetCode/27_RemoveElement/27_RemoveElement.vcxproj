@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{972dab91-5ba8-4da7-8287-768e8e20f916}</ProjectGuid>
-    <RootNamespace>My88MergeSortedArray</RootNamespace>
+    <ProjectGuid>{cf1bf320-54e9-4ae6-8944-991139c31a42}</ProjectGuid>
+    <RootNamespace>My27RemoveElement</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="88_MergeSortedArray.cpp" />
+    <ClCompile Include="27_RemoveElement.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

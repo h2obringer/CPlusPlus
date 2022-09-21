@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="88_MergeSortedArray.cpp">
+    <ClCompile Include="27_RemoveElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
